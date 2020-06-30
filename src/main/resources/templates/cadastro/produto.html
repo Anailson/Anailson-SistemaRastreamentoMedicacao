@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- COLOCANDO O STYLE PARA APLICAR NA CLASSE STRIPED -->
+<style type="text/css">
+	table.striped>tbody>tr:nth-child(odd){
+	 background-color: #e8f5e9;
+	}
+	
+form input[type=submit]{  /*PEGAR TODOS OS INPUT E COLOCA A COR BRANCO*/
+color:white;
+}	
+</style>
+
+
+<title>SRM -SISTEMA DE RASTREAMENTO DE MEDICAMENTOS</title>
+</head>
+<body>
+
+<nav>
+    <div class="nav-wrapper teal lighten-2">
+      <a href="#" class="brand-logo">Logo</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/cadastropessoa">Colaboradores</a></li>
+        <li><a href="/clientefornecedor">Fornecedor</a></li>
+         <li><a href="/rh">Recursos Humanos</a></li>
+         <li><a href="/suporte">Suporte</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+<div class="card-panel teal lighten-4" align="center">
+    	<h4>SRM  - Cadastro de produtos </h4>
+    </div>
+	
+<br/>
+<br/>
+<br/>
+
+
+
+<div class="row">
+<form action="salvaproduto" method="post" class="col s12" th:object="${produtoobj}" id="formproduto">
+
+
+<div class="row"><!-- MATERIALIZE 01 -->	
+
+	<div class="input-fiel col s6">
+	<label>ID:</label>
+	<input name="id" readonly="readonly" >
+	</div>
+	
+	<div class="input-fiel col s6">
+	<label>Nome Produto:</label>
+	<input name="nome" class="validade" >
+	</div>
+	
+	<div class="input-fiel col s6">
+	<label>Fornecedor:</label>
+		<input name="fornecedor" class="validade" >
+	  
+	    
+
+	</div>
+	
+	<div class="input-fiel col s6">
+		<label>Tipo:</label>
+		<input name="tipo" class="validade" >
+	</div>
+	
+	
+	<div class="input-fiel col s6">
+	<label>Data:</label>
+	<input name="data">
+	</div>
+	
+	<div class="input-fiel col s6">
+	<label>Quantidade:</label>
+	<input name="qtd" >
+	</div>
+	
+	
+	<br/>
+	<br/>
+	<br/>
+	<input class="waves-effect waves-light btn" type="submit" value="salvar">
+	<button class="waves-effect waves-light btn" onclick="document.getElementById('formproduto').reset();">Limpar</button>
+	<br/>
+	<br/>
+</div>	<!-- MATERIALIZE 01 -->	
+</form>
+</div>
+
+
+
+<form action="pesquisaproduto" method="post">
+	<label>Pesquisa Fornecedor</label>
+	<input name="fornecedorpesquisa">
+	<input class="waves-effect waves-light btn" type="submit" value="Buscar">
+	<a  class="waves-effect waves-light btn" href="/listaprodutos">Lista de Produtos</a>
+
+</form>
+
+
+
+
+<table class="striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nome Produto</th>
+				<th>Fornecedor</th>
+				<th>Tipo</th>
+				<th>Data</th>
+				<th>Quantidade</th>
+				<th>Excluir</th>
+			</tr>
+		</thead>
+
+
+
+		<tr th:each="produto : ${produtos}">
+			<td th:text="${produto.id}"></td>
+			<td><a th:href="@{/loteinformacoes/{idproduto}(idproduto=${produto.id})}" ><span th:text="${produto.nome}"  ></span></a>  </td>                      
+			<td th:text="${produto.fornecedor}"></td>
+			<td th:text="${produto.tipo}"></td>
+			<td th:text="${produto.data}"></td>
+			<td th:text="${produto.qtd}"></td>
+			<td> <a th:href="@{/removerproduto/{idproduto}(idproduto=${produto.id})}">Excluir</a></td>
+
+			
+		</tr>
+</table>
+
+
+
+
+<br/>
+<br/>
+<br/>
+
+<!-- FOOTER -->
+<footer class="page-footer" style="background-color:#80cbc4;">
+     
+          <div class="footer-copyright" style="background-color:#4db6ac">
+            <div class="container" align="center">
+            SRM -SISTEMA DE RASTREAMENTO DE MEDICAMENTOS - Desenvolvedor Anaílson Ribeiro dos Santos
+            <a class="grey-text text-lighten-4 right"></a>
+            </div>
+          </div>
+ </footer>
+
+
+ <!--JavaScript at end of body for optimized loading-->
+ <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+ <script type="text/javascript" src="/materialize/js/materialize.js"></script>
+</body>
+</html>
