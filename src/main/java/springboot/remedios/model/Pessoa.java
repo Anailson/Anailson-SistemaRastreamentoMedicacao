@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 
 
 
@@ -40,7 +42,9 @@ public class Pessoa implements Serializable{
 	
 	private String perfil;  /*USUARIO COM PERFIL ADMINISTRADOR OU USUARIO DO SISTEMA OU RH ALTERAR PARA PERFIL*/
 	
+	@CPF(message = "CPF invalido")
 	private String cpf;
+	
 	
 	private String rg;
 	

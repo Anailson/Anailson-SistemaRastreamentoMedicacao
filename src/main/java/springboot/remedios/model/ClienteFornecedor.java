@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+
 @Entity
 public class ClienteFornecedor implements Serializable {
 
@@ -25,6 +27,7 @@ public class ClienteFornecedor implements Serializable {
 	
 	private String tipo; /*CLIENTE OU FORNECEDOR*/
 	
+	@CNPJ(message = "CPNJ invalido")
 	private String cnpj;
 	
 	private String cep;

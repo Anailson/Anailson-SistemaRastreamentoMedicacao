@@ -78,6 +78,8 @@ public class PessoaController {
 	    return andView; /*RETORNANDO COM OS DADOS PARA TELA*/
 	}
 	
+
+	
 	/*LISTA DE PESSOAS - LISTA DE DADOS DAS PESSOAS*/
 	@RequestMapping(method = RequestMethod.GET, value = "/listapessoas")
 	public ModelAndView pessoas() { /*MODELO DE DADOS QUE MOSTRAR NA TELA*/
@@ -143,8 +145,8 @@ public class PessoaController {
 		return modelAndView;  //ADICIONANO DOS DADOS NA TELA
 		
 		
-		
-	}
+	}	
+	
 	
 	/*NOVO METODO QUE VAI SALVAR OS DADOS DA PAGINA FILHA (DADOS) NO PAI(PESSOAS)*/
 	/*PEGA O ID DA CLASSE PAI(PESSOA) E SÃO INJETADOS NA CLASSE FILHA(DADOS) , OU SEJA SELECIONAR O ID DA CLASSE PAI E SALVA NOVOS DADOS (FILHO)*/
